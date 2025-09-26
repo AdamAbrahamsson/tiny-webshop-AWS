@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  frontend:
+    build: .
+    container_name: tiny-webshop-frontend
+    ports:
+      - "3001:80"   # Map Nginx port 80 to host 3001
+  
