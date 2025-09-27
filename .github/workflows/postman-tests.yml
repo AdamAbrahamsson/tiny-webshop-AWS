@@ -27,11 +27,22 @@ jobs:
         DB_NAME: ${{ secrets.DB_NAME || 'testdb' }}
         JWT_SECRET: ${{ secrets.JWT_SECRET || 'test-jwt-secret-for-ci' }}
       run: |
-        # Start the database and backend services
-        docker compose up -d db app
+        # Start the database first
+        docker compose up -d db
         
-        # Wait for services to be ready
-        echo "Waiting for services to start..."
+        # Wait for database to be ready
+        echo "Waiting for database to be ready..."
+        timeout 30 bash -c 'until docker compose exec db pg_isready -U $DB_USER -d $DB_NAME; do sleep 2; done'
+        
+        # Run database seeding
+        echo "Seeding database..."
+        docker compose run --rm seed
+        
+        # Start the backend service
+        docker compose up -d app
+        
+        # Wait for backend to be ready
+        echo "Waiting for backend to start..."
         timeout 60 bash -c 'until curl -f http://localhost:3000 > /dev/null 2>&1; do sleep 2; done'
         
         # Verify backend is responding
