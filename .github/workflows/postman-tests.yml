@@ -65,7 +65,7 @@ jobs:
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1   # change to your region
+        aws-region: eu-north-1
 
     - name: Login to Amazon ECR
       id: login-ecr
@@ -74,7 +74,7 @@ jobs:
     - name: Build, tag, and push backend image to ECR
       working-directory: ./backend
       run: |
-        IMAGE_REPO="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-1.amazonaws.com/my-backend"
+        IMAGE_REPO="${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/my-backend"
         IMAGE_TAG=${{ github.sha }}
 
         docker build -t $IMAGE_REPO:$IMAGE_TAG -f Dockerfile .
