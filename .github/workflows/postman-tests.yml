@@ -28,7 +28,7 @@ jobs:
         JWT_SECRET: ${{ secrets.JWT_SECRET || 'test-jwt-secret-for-ci' }}
       run: |
         # Start the database and backend services
-        docker-compose up -d db app
+        docker compose up -d db app
         
         # Wait for services to be ready
         echo "Waiting for services to start..."
@@ -59,7 +59,7 @@ jobs:
     - name: Stop services
       if: always()
       working-directory: ./backend
-      run: docker-compose down
+      run: docker compose down
 
     - name: Comment PR with test results
       if: github.event_name == 'pull_request' && always()
