@@ -32,8 +32,9 @@ app.get('/', (req, res) => {
 
 // Health check endpoint for ALB
 app.get('/health', (req, res) => {
-  res.status(200).send('OK');
+  res.status(200).json({ status: 'ok' });
 });
+
 
 //app.listen(PORT, () => {
   //console.log(`Server running on http://localhost:${PORT}`);
