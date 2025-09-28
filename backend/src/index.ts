@@ -30,6 +30,11 @@ app.get('/', (req, res) => {
   res.send('Hello Tiny Webshop');
 });
 
+// Health check endpoint for ALB
+app.get('/health', (req, res) => {
+  res.status(200).send('OK');
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
