@@ -13,8 +13,11 @@ RUN npm install
 # Copy all source code
 COPY . .
 
+# Compile TypeScript to JavaScript
+RUN npx tsc
+
 # Expose backend port
 EXPOSE 3000
 
-# Run the dev command (from package.json scripts)
-CMD ["npm", "run", "dev"]
+# Run the compiled JS for production (stable process)
+CMD ["node", "dist/index.js"]
