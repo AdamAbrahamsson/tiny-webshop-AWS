@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 });
 
 // Health check endpoint for ALB
-app.get('/health', (req, res) => {
+app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
