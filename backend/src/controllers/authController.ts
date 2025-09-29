@@ -3,7 +3,7 @@ import pool from '../db';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET as string;
+const JWT_SECRET = (process.env.JWT_SECRET ?? '').toString();
 
 
 // Register a new user
@@ -13,9 +13,10 @@ export const registerUser = async (req: Request, res: Response) => {
 
     // Check if email already exists
     const existingUser = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
-    if (existingUser.rowCount > 0) {
+    if ((existingUser?.rowCount ?? 0) > 0) {
       return res.status(400).json({ error: 'Email already registered' });
     }
+
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);

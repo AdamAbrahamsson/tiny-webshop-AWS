@@ -1,10 +1,13 @@
-import { Response, NextFunction } from 'express';
+import { Request as ExpressRequest, Response, NextFunction } from 'express';
 import pool from '../db';
 
 
-interface AuthenticatedRequest extends Request {
-    user?: { id: string; email: string };
-  }
+interface AuthenticatedRequest extends ExpressRequest {
+  user?: { id: string; email: string };
+  body: {
+    items: { product_id: number; quantity: number }[];
+  };
+}
 
 // Create new order (with authentication)
 export const createOrder = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
