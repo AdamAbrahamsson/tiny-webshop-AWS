@@ -19,3 +19,15 @@ const pool = new Pool({
 });
 
 export default pool;
+
+// Test connectivity on startup (non-blocking)
+(async () => {
+  try {
+    const client = await pool.connect();
+    await client.query('SELECT 1');
+    console.log('Database connected successfully!');
+    client.release();
+  } catch (err) {
+    console.error('Database connection error:', err);
+  }
+})();
