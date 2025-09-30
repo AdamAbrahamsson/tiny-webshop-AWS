@@ -31,7 +31,8 @@ const Cart = () => {
     }));
   
     try {
-      const res = await fetch("http://localhost:3000/api/orders", {
+      const API = process.env.REACT_APP_API_URL || "";
+      const res = await fetch(`${API}/api/orders`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
