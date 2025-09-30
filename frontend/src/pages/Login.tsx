@@ -20,7 +20,8 @@ const Login: React.FC<LoginProps> = ({ setUserName }) => {
     const payload = isLogin ? { email, password } : { name, email, password };
 
     try {
-      const res = await fetch(`http://localhost:3000/api/auth/${endpoint}`, {
+      const API = process.env.REACT_APP_API_URL || "";
+      const res = await fetch(`${API}/api/auth/${endpoint}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

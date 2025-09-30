@@ -28,7 +28,8 @@ const Orders: React.FC = () => {
       }
 
       try {
-        const res = await fetch("http://localhost:3000/api/orders", {
+        const API = process.env.REACT_APP_API_URL || "";
+        const res = await fetch(`${API}/api/orders`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

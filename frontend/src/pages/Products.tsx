@@ -14,7 +14,8 @@ const Products: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/products") // Replace with your backend URL
+    const API = process.env.REACT_APP_API_URL || "";
+    fetch(`${API}/api/products`)
       .then((res) => res.json())
       .then((data: Product[]) => setProducts(data))
       .catch((err) => console.error(err));

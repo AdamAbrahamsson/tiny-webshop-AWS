@@ -6,6 +6,9 @@
 /dist
 /.env
 
+# Frontend env files (keep real envs out of git)
+frontend/.env
+frontend/.env.production
 # Backend
 /backend/.env
 

@@ -8,7 +8,8 @@ const ProductDetail = () => {
   const [qty, setQty] = useState(1);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/products/${id}`)
+    const API = process.env.REACT_APP_API_URL || "";
+    fetch(`${API}/api/products/${id}`)
       .then(res => res.json())
       .then(data => setProduct(data))
       .catch(err => console.error(err));
