@@ -1,28 +1,33 @@
 # Tiny Webshop
 
-A full-stack e-commerce web application built with React (frontend) and Node.js/TypeScript (backend) with PostgreSQL database. Includes authentication, and API testing via Postman.
+A full-stack e-commerce web application built with **React (frontend)** and **Node.js/TypeScript (backend)** with a **PostgreSQL database**.  
+Now fully containerized with Docker and deployed to AWS with a production-ready cloud architecture.
 
-# Features
+---
 
-1- User registration and login with JWT authentication
+## 🚀 Features
 
-2- Browse products and view details
+- User registration and login with JWT authentication  
+- Browse products and view details  
+- Add products to cart with stock validation  
+- Create, update, delete products (admin functionality via Postman)  
 
-3- Add products to cart with stock validation
+---
 
-4- create, update, delete products (admin functionality-through postman)
+## 🛠 Tech Stack
 
-# Tech Stack
+- **Frontend:** React, TypeScript, React Router  
+- **Backend:** Node.js, TypeScript, Express  
+- **Database:** PostgreSQL  
+- **Testing:** Postman, Newman  
+- **Containerization:** Docker, Docker Compose  
+- **Cloud Deployment:** AWS ECS Fargate, RDS, ALB, CloudFront, ECR, S3  
 
-1- Frontend: React, TypeScript, React Router
+---
 
-2- Backend: Node.js, TypeScript, Express
+## 🐳 Local Development
 
-3- Database: PostgreSQL
-
-4- Testing: Postman, Newman
-
-# Backend (Docker)
+### Backend (Docker)
 
 Run `cd backend` to navigate to the backend directory.
 
@@ -35,7 +40,7 @@ This will:
 - Seed the database with products
 - Automatically connect backend to the database via Docker networking
 
-# Frontend (Without Docker)
+### Frontend (Without Docker)
 Navigate to frontend folder:
 
 - Run `cd frontend` to navigate to the frontend directory:
@@ -48,7 +53,7 @@ Start frontend:
 
 - Run `npm start`
 
-# Frontend (Docker)
+### Frontend (Docker)
 Navigate to frontend folder:
 
 - Run `cd frontend` to navigate to the frontend directory:
@@ -57,7 +62,7 @@ Navigate to frontend folder:
 
 - Open a tab in your prowser and paste `http://localhost:3001/`
 
-# Postman API Tests
+### Postman API Tests
 
 Install Newman globally (if not already installed):
 
@@ -69,6 +74,25 @@ Install Newman globally (if not already installed):
 
 Ensure backend is running (via Docker) before running tests.
 
+---
+## ☁️ AWS Deployment
+This project is deployed to AWS using best practices for scalability, security, and high availability.
+
+Architecture Highlights:
+
+- ECS Fargate for containerized backend tasks in private subnets
+
+- Application Load Balancer (ALB) in public subnets for secure, scalable routing
+
+- Amazon RDS (PostgreSQL) Multi-AZ for fault-tolerant relational database backend
+
+- Amazon ECR for container image hosting
+
+- Amazon S3 + CloudFront for static frontend hosting and CDN caching
+
+- VPC Endpoints (PrivateLink) for ECS ↔ ECR/S3 access without NAT Gateway
+
+- CI/CD Pipeline integrated with GitHub → automated Postman tests → build & push Docker images to ECR → ECS service deployment
 
 
 
