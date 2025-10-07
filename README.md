@@ -3,7 +3,10 @@
 A full-stack e-commerce web application built with **React (frontend)** and **Node.js/TypeScript (backend)** with a **PostgreSQL database**.  
 Now fully containerized with Docker and deployed to AWS with a production-ready cloud architecture.
 
+To access the website: https://d1plvygs2hy3tb.cloudfront.net/
+
 <img width="15320" height="13410" alt="Ecommerce AWS diagram" src="https://github.com/user-attachments/assets/7894c6f8-e26f-4d0e-8099-3f143a046f2e" />
+
 
 
 ---
